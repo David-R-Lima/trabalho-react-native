@@ -37,6 +37,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c7fda30c-d1f7-4995-a45b-bed5a2b7cd8f"
+      }
+    },
+    "owner": "david-r-lima"
   }
 }
