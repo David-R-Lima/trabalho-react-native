@@ -1,24 +1,20 @@
 
 
 // components/CepList.tsx
+import { ViaCep } from '@/services/viacep/types';
 import { fetchAllCeps } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { DisplayCep } from './list-one-cep';
 
 export function CepList() {
-  const { data, refetch } = useQuery({
+    const [selectedCep, setSelectedCep] = useState<ViaCep | null>(null);
+
+  const { data } = useQuery({
     queryKey: ["ceps"],
     queryFn: fetchAllCeps
   })
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         refetch();
-    //     }, 5000);
-
-    //     return () => clearInterval(interval); // cleanup on unmount
-    // }, []);
 
   if (data && data.length === 0) {
     return (
@@ -29,17 +25,33 @@ export function CepList() {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {data?.map((cep, index) => (
-        <View key={index} style={styles.card}>
-          <Text style={styles.cepText}>{cep.cep}</Text>
-          <Text style={styles.addressText}>
-            {cep.logradouro}, {cep.bairro}
-          </Text>
-          <Text>{cep.localidade} - {cep.uf}</Text>
-        </View>
-      ))}
-    </ScrollView>
+    <>
+      <ScrollView contentContainerStyle={styles.container}>
+        {data?.map((cep, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.card}
+            onPress={() => setSelectedCep(cep)}
+          >
+            <Text style={styles.cepText}>{cep.cep}</Text>
+            <Text style={styles.addressText}>
+              {cep.logradouro}, {cep.bairro}
+            </Text>
+            <Text>
+              {cep.localidade} - {cep.uf}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+
+      {selectedCep && (
+        <DisplayCep
+          cep={selectedCep}
+          visible={!!selectedCep}
+          onClose={() => setSelectedCep(null)}
+        />
+      )}
+    </>
   );
 }
 
