@@ -1,3 +1,4 @@
+import { SetupDatabase } from "@/components/database";
 import { ReactQueryProvider } from "@/components/providers/react-query-provider";
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -24,6 +25,7 @@ export default function RootLayout() {
           {/* <Stack.Screen name="+not-found" /> */}
         </Stack>
         <StatusBar style="auto" />
+        <SetupDatabase></SetupDatabase>
       </ReactQueryProvider>
     </ThemeProvider>
   )
