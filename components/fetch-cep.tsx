@@ -1,4 +1,4 @@
-import { blue70 } from "@/app-example/constants/Colors";
+import { blue70 } from "@/constants/Colors";
 import { GetCep } from "@/services/viacep";
 import { ViaCep } from "@/services/viacep/types";
 import { saveCep } from "@/utils";
