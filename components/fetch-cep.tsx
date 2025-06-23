@@ -32,7 +32,7 @@ export function FetchCep({setCep}: Props) {
       style={styles.mainContainer}
     >
         <View style={styles.textContainer}>
-            <TextInput style={styles.text} onChangeText={(e) => {
+            <TextInput keyboardType="numeric" style={styles.text} onChangeText={(e) => {
                 setText(e)
             }}></TextInput>
         </View>
@@ -52,23 +52,20 @@ export function FetchCep({setCep}: Props) {
 const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
-    width: "auto",
+    width: "50%",
     height: "auto",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   textContainer: {
-    display: 'flex',
-    maxWidth: "70%"
+    width: "100%",
+    backgroundColor: blue70,
+    borderRadius: 4,
+    padding: 4,
   },
   text: {
-    backgroundColor: blue70,
-    borderStyle: "solid",
-    borderWidth: 2,
-    minWidth: 100
   },
   button: {
-    maxWidth: "50%"
   }
 });

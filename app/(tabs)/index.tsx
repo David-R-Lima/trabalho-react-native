@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
     width: "auto",
-    height: "auto"
+    height: "auto",
+    alignItems: "center",
   }
 });
